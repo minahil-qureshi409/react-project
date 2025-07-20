@@ -1,0 +1,74 @@
+@import './variables';
+@import './cursor';
+@import './hero';
+@import './about';
+@import './features';
+@import './landing';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background: linear-gradient(110deg, #002437 0%, #00c2d3 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  animation: gradientMotion 50s ease infinite;
+  @media (min-width: 768px) {
+    cursor: none;
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2), transparent 70%);
+  z-index: -1;
+}
+
+.container {
+  color: white;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hero-title {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+@keyframes gradientMotion {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

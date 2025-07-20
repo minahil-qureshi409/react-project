@@ -1,0 +1,103 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+.landing {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  // background: linear-gradient(to bottom left, #0f1a34, #285b95);
+}
+
+// Base Circle Style (used for all outer and center circles)
+.circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  // transition: all 0.8s ease;
+}
+
+// .circle:not(.center) {
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+// Central Clickable Circle
+.center {
+  @extend .circle;
+  border: 2px solid white;
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
+
+  span {
+    color: white;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+}
+
+// Positioning Outer Circles (flower shape)
+.top {
+  // @extend .circle;
+  top: calc(38% - 220px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  // @extend .circle;
+  top: calc(53% + 220px - 180px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  // @extend .circle;
+  top: 50%;
+  left: calc(44% - 220px);
+  transform: translateY(-50%);
+}
+
+.right {
+  // @extend .circle;
+  top: 50%;
+  left: calc(53% + 220px - 180px);
+  transform: translateY(-50%);
+}
+
+.top-left {
+  // @extend .circle;
+  top: calc(38% - 153px);
+  left: calc(44% - 154px);
+}
+
+.top-right {
+  // @extend .circle;
+  top: calc(38% - 153px);
+  left: calc(52% + 155px - 181px);
+}
+
+.bottom-left {
+  // @extend .circle;
+  top: calc(53% + 155px - 181px);
+  left: calc(44% - 154px);
+}
+
+.bottom-right {
+  // @extend .circle;
+  top: calc(53% + 155px - 181px);
+  left: calc(52% + 155px - 181px);
+}
+
