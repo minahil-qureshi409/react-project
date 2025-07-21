@@ -167,3 +167,17 @@
     opacity: 1;
   }
 } 
+
+.circle.outer {
+  top: 33%;
+  left: 42%;
+  transform: translate(-50%, -50%) scale(0.1);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.circle.outer.animate {
+  opacity: 1;
+  transform: scale(1); // Position will update via JS
+}
+

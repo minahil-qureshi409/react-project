@@ -9,19 +9,19 @@ const Landing = ({ onEnter }) => {
 
   return (
     <div className="landing">
-      <div className="circle center" onClick={onEnter}>
+      <div className="circle center loader" onClick={onEnter}>
         <span>CLICK TO ENTER</span>
       </div>
 
       {/* 8 Outer Circles */}
-      <div className="circle top" />
-      <div className="circle bottom" />
-      <div className="circle left"  />
-      <div className="circle right"  />
-      <div className="circle top-left"/>
-      <div className="circle top-right" />
-      <div className="circle bottom-left" />
-      <div className="circle bottom-right"  />
+      <div className="circle outer top" />
+      <div className="circle outer bottom" />
+      <div className="circle outer left"  />
+      <div className="circle outer right"  />
+      <div className="circle outer top-left"/>
+      <div className="circle outer top-right" />
+      <div className="circle outer bottom-left" />
+      <div className="circle outer bottom-right"  />
     </div>
   );
 };
