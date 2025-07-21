@@ -54,6 +54,7 @@
   top: calc(38% - 220px);
   left: 50%;
   transform: translateX(-50%);
+  animation-delay:0.2s;
 }
 
 .bottom {
@@ -61,6 +62,7 @@
   top: calc(53% + 220px - 180px);
   left: 50%;
   transform: translateX(-50%);
+  animation-delay:0.4s;
 }
 
 .left {
@@ -68,6 +70,7 @@
   top: 50%;
   left: calc(44% - 220px);
   transform: translateY(-50%);
+  animation-delay:0.6s;
 }
 
 .right {
@@ -75,29 +78,92 @@
   top: 50%;
   left: calc(53% + 220px - 180px);
   transform: translateY(-50%);
+  animation-delay:0.8s;
 }
 
 .top-left {
   // @extend .circle;
   top: calc(38% - 153px);
   left: calc(44% - 154px);
+  animation-delay:1s;
 }
 
 .top-right {
   // @extend .circle;
   top: calc(38% - 153px);
   left: calc(52% + 155px - 181px);
+  animation-delay:1.2s;
 }
 
 .bottom-left {
   // @extend .circle;
   top: calc(53% + 155px - 181px);
   left: calc(44% - 154px);
+  animation-delay:1.4s;
 }
 
 .bottom-right {
   // @extend .circle;
   top: calc(53% + 155px - 181px);
   left: calc(52% + 155px - 181px);
+  animation-delay:1.6s;
 }
 
+.loader {
+  // width: 50px;
+  // padding: 8px;
+  // aspect-ratio: 1;
+  // border-radius: 50%;
+  // background: #25b09b;
+  --_m:
+    conic-gradient(#0000 10%, #000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+
+  animation: fillOnce 2s ease-out forwards;
+}
+
+@keyframes fillOnce {
+  0% {
+    transform: rotate(0turn);
+  }
+
+  100% {
+    transform: rotate(1turn);
+    -webkit-mask: none;
+    mask: none;
+  }
+}
+
+// Outer circles (shared styles)
+// .circle.outer {
+//   position: absolute;
+//   width: 150px;
+//   height: 150px;
+//   background-color: rgba(255, 255, 255, 0.1);
+//   border: 2px solid rgba(255, 255, 255, 0.3);
+//   border-radius: 50%;
+//   z-index: 1;
+//   transform: scale(0);
+//   opacity: 0;
+//   animation: expand 2s ease-out forwards;
+// }
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes expand {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+} 
