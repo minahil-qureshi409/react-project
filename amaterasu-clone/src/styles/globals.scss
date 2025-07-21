@@ -15,11 +15,12 @@
 body {
   font-family: "Poppins", sans-serif;
   color: white;
-  background: linear-gradient(110deg, #002437 0%, #00c2d3 100%);
+  background: radial-gradient(circle at center, #00c2d3, #002437 70%);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
-  animation: gradientMotion 50s ease infinite;
+  background-size:400% 400%;
+  animation: radialShift 15s ease-in-out infinite;
+  
   @media (min-width: 768px) {
     cursor: none;
   }
@@ -29,9 +30,12 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2), transparent 70%);
+  background: radial-gradient(circle at center, rgba(0, 194, 211, 0.15), transparent 70%);
   z-index: -1;
+  pointer-events: none;
+  animation: pulseGlow 10s ease-in-out infinite;
 }
+
 
 .container {
   color: white;
@@ -61,7 +65,7 @@ body::before {
   opacity: 0.7;
 }
 
-@keyframes gradientMotion {
+@keyframes radialShift {
   0% {
     background-position: 0% 50%;
   }
@@ -70,5 +74,16 @@ body::before {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 4%;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.02);
   }
 }
