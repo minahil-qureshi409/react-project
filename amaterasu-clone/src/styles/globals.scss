@@ -22,7 +22,7 @@ body {
   animation: radialShift 15s ease-in-out infinite;
   
   @media (min-width: 768px) {
-    cursor: none;
+    cursor: default;
   }
 }
 

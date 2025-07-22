@@ -1,13 +1,99 @@
+.hero-container{
+  height: 100vh !important;
+  width: 100%;
+  // background:url(model/girl.png);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.content-wrapper {
+  text-align:left;
+  color: #ffffff;
+}
+
 .hero-title {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 20px;
-  color: white;
-  opacity: 100% !important;
+  font-size: 20rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(
+    270deg,
+    #ff00c7,
+    #00eaff,
+    #ff00c7
+  );
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 10s ease infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
-  text-align: center;
-  opacity: 100% !important;
+  color: #cccccc;
 }
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0; // behind the text
+}
+
+.blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #00eaff, #ff00c7);
+  opacity: 0.3;
+  filter: blur(100px);
+  border-radius: 50%;
+  animation: floatBlob 20s ease-in-out infinite;
+}
+
+.blob1 {
+  top: -100px;
+  left: -100px;
+}
+
+.blob2 {
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 10s;
+}
+
+@keyframes floatBlob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+
+
+
+

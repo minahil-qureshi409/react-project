@@ -54,7 +54,7 @@
   top: calc(38% - 220px);
   left: 50%;
   transform: translateX(-50%);
-  animation-delay:0.2s;
+  // animation-delay:0.2s;
 }
 
 .bottom {
@@ -62,7 +62,7 @@
   top: calc(53% + 220px - 180px);
   left: 50%;
   transform: translateX(-50%);
-  animation-delay:0.4s;
+  // animation-delay:0.4s;
 }
 
 .left {
@@ -70,7 +70,7 @@
   top: 50%;
   left: calc(44% - 220px);
   transform: translateY(-50%);
-  animation-delay:0.6s;
+  // animation-delay:0.6s;
 }
 
 .right {
@@ -78,35 +78,35 @@
   top: 50%;
   left: calc(53% + 220px - 180px);
   transform: translateY(-50%);
-  animation-delay:0.8s;
+  // animation-delay:0.8s;
 }
 
 .top-left {
   // @extend .circle;
   top: calc(38% - 153px);
   left: calc(44% - 154px);
-  animation-delay:1s;
+  // animation-delay:1s;
 }
 
 .top-right {
   // @extend .circle;
   top: calc(38% - 153px);
   left: calc(52% + 155px - 181px);
-  animation-delay:1.2s;
+  // animation-delay:1.2s;
 }
 
 .bottom-left {
   // @extend .circle;
   top: calc(53% + 155px - 181px);
   left: calc(44% - 154px);
-  animation-delay:1.4s;
+  // animation-delay:1.4s;
 }
 
 .bottom-right {
   // @extend .circle;
   top: calc(53% + 155px - 181px);
   left: calc(52% + 155px - 181px);
-  animation-delay:1.6s;
+  // animation-delay:1.6s;
 }
 
 .loader {
@@ -173,7 +173,7 @@
   left: 42%;
   transform: translate(-50%, -50%) scale(0.1);
   opacity: 0;
-  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 2s ease, opacity 1s ease;
 }
 
 .circle.outer.animate {
