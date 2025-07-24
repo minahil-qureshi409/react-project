@@ -41,12 +41,12 @@ const Hero = () => {
       {/* Hero Text Content */}
       <div
         className="content-wrapper text-white d-flex flex-column justify-content-center align-items-end px-2"
-        style={{ width: "50vw" }}
+        style={{ width: "53%" }}
       >
         {["Empower", "your mental", "health journey"].map((line, index) => (
           <motion.h1
             key={index}
-            className="hero-title display-3 mb-1"
+            className="hero-title display-3 mb-0"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.4, ease: "easeOut" }}
@@ -90,38 +90,43 @@ const Hero = () => {
         </p>
       </motion.div>
       {/* Hollow Circle with Wave Line */}
-  <div
-  className="hero-wave-circle position-absolute"
-  style={{
-    bottom: "3.5rem",
-    right: "45px",
-    width: "60px",
-    height: "60px",
-    border: "1px solid white",
-    borderRadius: "50%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }}
->
-  <svg
-    width="18"
-    height="8"
-    viewBox="0 0 18 8"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="wave-svg"
-  >
-    <path
-      className="wave-path"
-      d="M1 4C3 0 5 8 7 4C9 0 11 8 13 4C15 0 17 8 17 4"
-      stroke="white"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-    />
-  </svg>
-</div>
-
+      <div
+        className="hero-wave-circle position-fixed"
+        style={{
+          bottom: "3.5rem",
+          right: "45px",
+          width: "60px",
+          height: "60px",
+          border: "1px solid ",
+          color: "rgba(255,255,255,0.5)",
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 9999,
+        }}
+      >
+        <svg
+          width="40"
+          height="10"
+          viewBox="0 0 40 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path fill="none" stroke="white" strokeWidth="0.9">
+            <animate
+              attributeName="d"
+              dur="2s"
+              repeatCount="indefinite"
+              values="
+          M0,5 Q5,0 10,5 T20,5 T30,5 T40,5;
+          M0,5 Q5,14 10,5 T20,5 T30,5 T40,5;
+          M0,5 Q5,0 10,5 T20,5 T30,5 T40,5
+        "
+            />
+          </path>
+        </svg>
+      </div>
 
       {/* Bottom Left Scroll Text */}
       <div
@@ -137,7 +142,7 @@ const Hero = () => {
         }}
       >
         Scroll to explore
-        <span style={{ fontSize: "1rem",padding:"0",margin:"0" }}>↓</span>
+        <span style={{ fontSize: "1rem", padding: "0", margin: "0" }}>↓</span>
       </div>
     </section>
   );
