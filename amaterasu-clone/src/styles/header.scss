@@ -1,0 +1,44 @@
+.header {
+  height: 0;
+  background-color: transparent !important; // force transparency
+  // color: white;
+  position: sticky; // reinforce position
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 3rem;
+}
+
+
+.horizontal-line {
+
+  width: 15rem;
+  height: 2px;
+  background-color: rgb(171, 170, 170);
+
+}
+
+
+.dots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 5px);
+  gap: 3px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.vision-text {
+  display: flex;
+  align-items: center;
+  gap: 8rem; // or 0.5rem / 1rem as per need
+
+}

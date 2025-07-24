@@ -4,8 +4,9 @@ import CustomCursor from "./components/CustomCursor";
 // import About from "./sections/About";
 // import Features from "./sections/Features";
 import Landing from "./pages/Landing";
-import "./styles/globals.scss";
 import Main from './pages/Main'; // or wherever your Main.jsx file is located
+import Header from './components/Header';
+import "./styles/globals.scss";
 
 // import ShaderBackground from "./components/ShaderBackground";
 
@@ -20,10 +21,11 @@ const App = () => {
       ) : (
         <>
         {/* <ShaderBackground /> */}
+         <Header />
           <Main />
           
         </>
-      )}
+       )} 
     </>
   );
 };
