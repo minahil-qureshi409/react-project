@@ -6,7 +6,9 @@ import CustomCursor from "./components/CustomCursor";
 import Landing from "./pages/Landing";
 import Main from './pages/Main'; // or wherever your Main.jsx file is located
 import Header from './components/Header';
+import FixedBackground from "./components/FixedBackground";
 import "./styles/globals.scss";
+
 
 // import ShaderBackground from "./components/ShaderBackground";
 
@@ -16,16 +18,19 @@ const App = () => {
   return (
     <>
       <CustomCursor />
-      {!entered ? (
+      {/* {!entered ? (
         <Landing onEnter={() => setEntered(true)} />
-      ) : (
+      ) : ( */}
         <>
         {/* <ShaderBackground /> */}
          <Header />
+            <FixedBackground />
+          
           <Main />
           
+          
         </>
-      )} 
+      {/* )}  */}
     </>
   );
 };

@@ -6,6 +6,8 @@ import About from '../sections/About';
 // // import Services from '../sections/Services';
 // // import Contact from '../sections/Contact';
 // import ShaderBackground from '../components/ShaderBackground';
+// import FixedBackground from "../components/FixedBackground";
+// import Sound from "../components/Sound";
 
 const Main = () => {
   return (
@@ -14,9 +16,11 @@ const Main = () => {
       {/* <ShaderBackground /> */}
 
       {/* Main sections */}
+      
       <Hero />
       <About />
-      <Features />
+        {/* <Sound /> */}
+      {/* <Features /> */}
       {/* <Contact /> */}
     </div>
   );

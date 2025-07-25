@@ -1,0 +1,21 @@
+.about {
+  background-color: white !important;
+  color: black; // Optional: makes text visible on white background
+  min-height: 100vh; // ✅ Ensure it fills the viewport
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.1rem;
+  text-align: center;
+}
