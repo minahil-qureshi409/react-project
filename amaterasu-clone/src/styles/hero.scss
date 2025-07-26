@@ -1,12 +1,13 @@
 .hero-outer-wrapper {
   height: 135vh;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-scroll-wrapper {
   // position: sticky;
   // top: 0;
+  position: relative;
   height: 100vh;
   // background: url("../assets/girlbg.png") no-repeat center;
   // background-size: 50%;
@@ -36,8 +37,6 @@
   // flex-direction: column;
   // justify-content: center;
 }
-
-
 
 .blobs {
   position: absolute;
@@ -101,7 +100,7 @@
 // }
 
 .content-wrapper {
-//  position: relative;
+  //  position: relative;
   z-index: 2;
   min-height: 100vh;
   width: 53%;
@@ -112,22 +111,112 @@
     font-size: 4.5rem;
   }
 
-  button {
-    padding: 1rem 2rem;
+  .start-journey-btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 2.3rem !important; // reduced left/right padding
     font-size: 0.8rem;
     border: none;
     background: linear-gradient(to right, #2c1c95, #7bd0fe);
     color: white;
     border-radius: 30px;
     cursor: pointer;
+
+
+    // ✅ normal text
+    .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      // margin-left: 1.8rem; // add space for circle on left
+      transition: color 0.3s ease;
+    }
+
+    // ✅ always visible circle on the left
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 16px; // always visible inside button
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7bd0fe;
+      z-index: 3;
+      transition: left 1s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    // ✅ overlay text for wipe effect
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: inset(0 100% 0 0); // initially hidden
+      transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 4;
+    }
+
+    &:hover {
+      &::before {
+        left: calc(100% - 24px); // circle travels to right side
+      }
+
+      &::after {
+        clip-path: inset(0 0 0 0); // wipe text
+      }
+
+      .btn-text {
+        color: transparent; // hide original text while wipe animation
+      }
+    }
+
+    &:not(:hover) {
+      transition-delay: 0s;
+
+      &::after {
+        clip-path: inset(0 100% 0 0); // wipe text back
+      }
+
+      .btn-text {
+        color: white;
+        transition-delay: 0.6s; // slight delay so text shows after wipe
+      }
+    }
+
   }
+
 }
 
-.wave-path {
+// .cursor-outer.hovering-button {
+//   transform: translate(-50%, -50%) scale(1) !important;
+//   border-color: rgba(255, 255, 255, 0.6);
+// }
+
+.hero-wave-circle {
+  z-index: 999;
   stroke-dasharray: 20;
   stroke-dashoffset: 0;
+  color: white;
   animation: wave-motion 1.5s linear infinite;
+  // position: fixed;
+  bottom: 2rem;
+  right: 2rem;
 }
+
+// .wave-path {
+
+// }
 
 @keyframes wave-motion {
   0% {
@@ -139,15 +228,21 @@
   }
 }
 
-
-
-
-
 .hero-scroll-text {
-  animation: scroll-fade 2s ease-in-out infinite;
+  // animation: scroll-fade 2s ease-in-out infinite;
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 999;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  // animation: scroll-fade 2s ease-in-out infinite;
+  // z-index: 999;
 
   span {
-    animation: arrow-bounce 1.5s ease-in-out infinite;
+    // animation: arrow-bounce 1.5s ease-in-out infinite;
+    margin-left: 10px;
   }
 
   @keyframes scroll-fade {
