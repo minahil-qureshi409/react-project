@@ -3,6 +3,7 @@ import React from 'react';
 import Hero from '../sections/Hero';
 import Features from '../sections/Features';
 import Vision from '../sections/Vision';
+import Layers from '../sections/Layers';
 // // import Services from '../sections/Services';
 // // import Contact from '../sections/Contact';
 // import ShaderBackground from '../components/ShaderBackground';
@@ -19,6 +20,7 @@ const Main = () => {
       
       <Hero />
       <Vision />
+      <Layers />
         {/* <Sound /> */}
       {/* <Features /> */}
       {/* <Contact /> */}

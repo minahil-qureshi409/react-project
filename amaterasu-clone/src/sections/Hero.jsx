@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "../styles/hero.scss";
 import girlbgImage from "../assets/girlbg.png";
+// import FixedBackground from "../components/FixedBackground";
 
 const Hero = () => {
 
@@ -42,6 +43,7 @@ const Hero = () => {
 
   return (
     <div className="hero-outer-wrapper" ref={scrollRef}>
+      {/* <FixedBackground /> */}
       <div className="hero-fixed-image" />
       <motion.section className="hero-scroll-wrapper" style={{ y, opacity }}>
         {/* Blobs */}
