@@ -3,24 +3,28 @@
   background: #ffffff;
   overflow: visible;
   min-height: 400vh;
-   padding-top: 8rem;
-  z-index: 0;
+  padding-top: 60vw; // Leave room above for fixed semicircle
+  z-index: 1;
 }
 
-/* 🔵 The animated semicircle */
+/* 🔵 The animated upper semicircle */
 .layer-semicircle {
   position: fixed;
-  left: -50%;
-  bottom: -120vw;
-  transform: translate(-50%);
- // moves center of circle downward
+  bottom: -460px;
+  left: -51%;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
   width: 200vw;
-  height: 200vw;
-  border-radius: 50%;
+  height: 100vw;
+  border-top-left-radius: 100vw;
+  border-top-right-radius: 100vw;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   background: radial-gradient(circle at center, #00c2d3, #002437 70%);
-//   transform-origin: center;
-//   z-index: 0;
   pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.1s ease-out;
 
   &::before {
     content: "";
@@ -35,6 +39,24 @@
 }
 
 
+/* Horizontal scroll container */
+.layers-scroll-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.layers-track {
+  display: flex;
+  flex-direction: row;
+  width: 400vw; // 4 slides * 100vw
+  will-change: transform, opacity;
+  transition: opacity 0.6s ease-out;
+}
+
+
+/* Layer content */
 .layer {
   position: relative;
   z-index: 2;
@@ -59,11 +81,17 @@
       opacity: 0.9;
     }
   }
+}
 
-  &.chaos-order,
-  &.digital-twin,
-  &.quantum-sim,
-  &.treatment {
-    background: transparent;
-  }
+.bottom-left-text {
+  position: fixed;
+  bottom: 5rem;
+  left: 48px;
+  max-width: 35vw; 
+  font-size: 2rem;
+  font-weight: 500;
+  color: white;
+  font-family: "Neue Montreal", sans-serif;
+  z-index: 10;
+  opacity: 0.9;
 }

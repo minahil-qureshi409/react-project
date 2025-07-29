@@ -1,29 +1,17 @@
-// // src/pages/Main.jsx
-import React from 'react';
+// src/pages/Main.jsx
+import React, { useRef } from 'react';
 import Hero from '../sections/Hero';
-import Features from '../sections/Features';
 import Vision from '../sections/Vision';
 import Layers from '../sections/Layers';
-// // import Services from '../sections/Services';
-// // import Contact from '../sections/Contact';
-// import ShaderBackground from '../components/ShaderBackground';
-// import FixedBackground from "../components/FixedBackground";
-// import Sound from "../components/Sound";
 
 const Main = () => {
+  const visionRef = useRef(null); // ⬅️ Create the ref here
+
   return (
     <div className="main-page">
-      {/* Optional animated background using three.js */}
-      {/* <ShaderBackground /> */}
-
-      {/* Main sections */}
-      
       <Hero />
-      <Vision />
-      <Layers />
-        {/* <Sound /> */}
-      {/* <Features /> */}
-      {/* <Contact /> */}
+      <Vision ref={visionRef} />  {/* ⬅️ Pass ref to Vision */}
+      <Layers visionRef={visionRef} /> {/* ⬅️ Pass ref to Layers */}
     </div>
   );
 };
