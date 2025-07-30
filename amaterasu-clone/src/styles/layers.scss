@@ -3,7 +3,7 @@
   background: #ffffff;
   overflow: visible;
   min-height: 400vh;
-  padding-top: 60vw; // Leave room above for fixed semicircle
+  // padding-top: 60vw; // Leave room above for fixed semicircle
   z-index: 1;
 }
 
@@ -20,7 +20,7 @@
   border-top-right-radius: 100vw;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  background: radial-gradient(circle at center, #00c2d3, #002437 70%);
+  background: radial-gradient(circle at center, #024ab0, #002437 70%);
   pointer-events: none;
   z-index: 0;
   will-change: transform, opacity;
@@ -39,59 +39,128 @@
 }
 
 
-/* Horizontal scroll container */
+/* Horizontal container */
 .layers-scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
-  width: 100%;
-  position: relative;
   z-index: 2;
 }
 
 .layers-track {
   display: flex;
-  flex-direction: row;
-  width: 400vw; // 4 slides * 100vw
-  will-change: transform, opacity;
-  transition: opacity 0.6s ease-out;
+  height: 100%;
+  width: 300vw;
 }
 
-
-/* Layer content */
 .layer {
-  position: relative;
-  z-index: 2;
+  width: 100vw;
   height: 100vh;
+  flex-shrink: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 3rem;
-
-  .layer-content {
-    max-width: 800px;
-    color: white;
-
-    h2 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.4rem;
-      opacity: 0.9;
-    }
-  }
+  align-items: center;
+  color: white;
 }
 
+// .full-layout {
+//   background: #111;
+// }
+
+// .layer3-content {
+//   text-align: center;
+//   padding: 4rem;
+//   max-width: 800px;
+
+//   h2 {
+//     font-size: 3rem;
+//     margin-bottom: 1rem;
+//   }
+
+//   p {
+//     font-size: 1.4rem;
+//     line-height: 1.6;
+//     opacity: 0.8;
+//   }
+// }
+
+/* Bottom left intro text */
 .bottom-left-text {
   position: fixed;
-  bottom: 5rem;
+  bottom: 7rem;
   left: 48px;
-  max-width: 35vw; 
+  max-width: 35vw;
   font-size: 2rem;
   font-weight: 500;
+  line-height: 1.2;
   color: white;
   font-family: "Neue Montreal", sans-serif;
   z-index: 10;
   opacity: 0.9;
+}
+
+.bottom-left-text .word {
+  // display: inline;
+  white-space: normal;
+}
+
+.nature-svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nature-svg {
+  width: 100%;
+  height: 100%;
+  stroke: white;
+  opacity: 0.9;
+}
+
+.layer3-circles {
+  position: fixed; // ← better than absolute to layer on top
+  top: 25%;
+  left: 0;
+  width: 200vw;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  z-index: 11; // must be higher than semicircle (0) and section (1)
+  pointer-events: none;
+
+  .circle {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.05); // optional but helps visibility
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+
+    &.circle-2 {
+      width: 120px;
+      height: 120px;
+    }
+
+    &.circle-3 {
+      width: 200px;
+      height: 200px;
+    }
+
+    &.circle-4 {
+      width: 80px;
+      height: 80px;
+    }
+
+    &.circle-5 {
+      width: 140px;
+      height: 140px;
+    }
+  }
 }

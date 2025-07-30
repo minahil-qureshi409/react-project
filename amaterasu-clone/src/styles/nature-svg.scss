@@ -1,0 +1,13 @@
+.nature-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  stroke-width: 1;
+  pointer-events: none;
+  background: transparent;
+
+  circle,
+  path {
+    transition: stroke-dashoffset 0.5s ease, opacity 0.3s ease;
+  }
+}
