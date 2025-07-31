@@ -50,7 +50,7 @@ export const animateCursor = () => {
 
     // Cursor styles
     const scale = isHovering ? 2 : 1;
-    
+
     outerCursor.style.transform = `translate(${outerX}px, ${outerY}px) translate(-50%, -50%) scale(${scale})`;
     innerCursor.style.transform = `translate(${innerX}px, ${innerY}px) translate(-50%, -50%)`;
 

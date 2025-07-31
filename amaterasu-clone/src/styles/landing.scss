@@ -10,6 +10,11 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+   background: radial-gradient(circle at center, #024ab0, #002437 70%);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.1s ease-out;
   // background: linear-gradient(to bottom left, #0f1a34, #285b95);
 }
 

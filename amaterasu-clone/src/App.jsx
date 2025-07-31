@@ -24,11 +24,8 @@ const App = () => {
         <>
         {/* <ShaderBackground /> */}
          <Header />
-            <FixedBackground />
-          
-          <Main />
-          
-          
+         <FixedBackground />
+         <Main />
         </>
       {/* )}  */}
     </>

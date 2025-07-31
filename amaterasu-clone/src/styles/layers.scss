@@ -92,7 +92,7 @@
   position: fixed;
   bottom: 7rem;
   left: 48px;
-  max-width: 35vw;
+  max-width: 38vw;
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2;
@@ -107,60 +107,114 @@
   white-space: normal;
 }
 
-.nature-svg-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
+// .nature-svg-container {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 1;
+//   pointer-events: none;
+// }
 
-.nature-svg {
-  width: 100%;
-  height: 100%;
-  stroke: white;
-  opacity: 0.9;
-}
+// .nature-svg {
+//   width: 100%;
+//   height: 100%;
+//   stroke: white;
+//   opacity: 0.9;
+// }
 
-.layer3-circles {
-  position: fixed; // ← better than absolute to layer on top
-  top: 25%;
+.layer3-timeline {
+  position: fixed;
+  top: 17%;
   left: 0;
   width: 200vw;
-  height: 200px;
+  height: 300px;
+  z-index: 11;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.timeline-row {
   display: flex;
   align-items: center;
-  gap: 60px;
-  z-index: 11; // must be higher than semicircle (0) and section (1)
+  width: max-content;
+}
+
+.timeline-circle {
+  border: 1px solid rgba(255, 255, 255, 0.237);
+  border-radius: 50%;
+  // background-color: rgba(255, 255, 255, 0.03);
+  margin-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 1rem;
+
+  span {
+    max-width: 90%;
+  }
+}
+
+.timeline-arrow {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.701);
+  margin-right: 2rem;
+  margin-left: -1rem; // slight overlap
+}
+
+
+// .layer4-circles-container {
+//   position: fixed;
+//   top: 32%;
+//   left: 60%;
+//   transform: translate(-50%, -50%);
+//   width: 0;
+//   height: 0;
+//   z-index: 11;
+// }
+
+// .circle-animate {
+//   position: absolute;
+//   width: 260px;
+//   height: 260px;
+//   border: 1px solid rgba(255, 255, 255, 0.3);
+//   border-radius: 50%;
+//   background: transparent;
+//   pointer-events: none;
+// }
+
+.layer4-flower {
+  position: fixed;
+  top: 32%;
+  left: 60%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
   pointer-events: none;
 
-  .circle {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    background-color: rgba(255, 255, 255, 0.05); // optional but helps visibility
+  .flower-circle {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255, 255, 255, 0.256);
     border-radius: 50%;
-    width: 160px;
-    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &.circle-2 {
-      width: 120px;
-      height: 120px;
-    }
-
-    &.circle-3 {
-      width: 200px;
-      height: 200px;
-    }
-
-    &.circle-4 {
-      width: 80px;
-      height: 80px;
-    }
-
-    &.circle-5 {
-      width: 140px;
-      height: 140px;
+    .center-text {
+      font-size: 14px;
+      color: white;
+      font-weight: 300;
+      pointer-events: none;
     }
   }
 }
+

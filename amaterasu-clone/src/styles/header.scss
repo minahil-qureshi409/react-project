@@ -42,3 +42,218 @@
   gap: 8rem; // or 0.5rem / 1rem as per need
 
 }
+
+.header-right {
+  position: relative;
+
+  .vision-text {
+    display: flex;
+    align-items: center;
+    gap: 8rem; // or 0.5rem / 1rem as per need
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+
+    .label {
+      transition: transform 0.4s ease;
+    }
+
+    .dots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 6px);
+      grid-template-rows: repeat(3, 6px);
+      gap: 3px;
+      margin-left: 8px;
+      transition: transform 0.6s ease;
+
+      &.rotate {
+        transform: rotate(45deg);
+      }
+
+      .dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 40%;
+        background-color: white;
+        opacity: 1;
+        transition: opacity 0.3s;
+
+        &.hidden {
+          opacity: 0;
+        }
+      }
+
+      .dot-center {
+        background-color: white;
+      }
+    }
+  }
+
+  .menu-panel-dropdown {
+    position: absolute;
+    top: 50%;
+    right: -15%;
+    margin-top: 20px;
+    background: linear-gradient(to bottom, #e6fbff, #dff7ff); // soft gradient
+    color: #1c2c57;
+    padding: 3rem 2.5rem !important;
+    width: 340px;
+    min-height: 41rem;
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    z-index: 10;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+
+    &.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0%);
+    }
+
+    .close-btn {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: #0a1e66;
+      cursor: pointer;
+      margin-bottom: 3rem;
+      align-self: flex-start;
+
+      &::after {
+        content: "→ ";
+        margin-left: 8px;
+        margin-top: 20px !important;
+        font-weight: 400;
+      }
+
+
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      font-weight: 500;
+      padding-top: 10rem !important;
+      padding-bottom: 2rem !important;
+      margin-bottom: 2.5rem;
+      color: #122061;
+
+      span {
+        display: block;
+        font-weight: 400;
+        font-size: 3.4rem;
+        color: #7a88b7;
+      }
+    }
+
+    ul {
+      list-style: none;
+      // padding: 0;
+      margin: 0 0 4rem !important;
+      // padding-bottom: rem !important;
+
+      li {
+        margin-bottom: 0.9rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #576b8a;
+        letter-spacing: 0.04em;
+      }
+    }
+
+    .invest-btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      width: 12rem;
+      justify-content: center;
+      padding: 0.75rem 1rem !important;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #212789, #63c5fa);
+      cursor: pointer;
+
+      // ✅ Normal visible text
+      .btn-text {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        transition: color 0.3s ease;
+      }
+
+      // ✅ Circle on the left
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #32e0c4;
+        z-index: 3;
+        transition: left 1s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+
+      // ✅ Overlay wipe text
+      &::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 4;
+      }
+
+      // ✅ Hover behavior
+      &:hover {
+        &::before {
+          left: calc(100% - 24px); // move circle to right
+        }
+
+        &::after {
+          clip-path: inset(0 0 0 0); // wipe text in
+        }
+
+        .btn-text {
+          color: transparent;
+        }
+      }
+
+      // ✅ Reverse on mouse leave
+      &:not(:hover) {
+        transition-delay: 0s;
+
+        &::after {
+          clip-path: inset(0 100% 0 0); // wipe back
+        }
+
+        .btn-text {
+          color: white;
+          transition-delay: 0.6s;
+        }
+      }
+    }
+
+  }
+
+
+}

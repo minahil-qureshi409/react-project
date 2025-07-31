@@ -169,57 +169,90 @@ export default function Layers() {
 
           {/* Animated Circles */}
           <motion.div
-            className="layer3-circles"
-            key="layer3-circles"
-            initial={{ x: "20%" }}
-            animate={{ x: "-30%" }}
-            transition={{ duration: 6, ease: "easeInOut" }}
+            className="layer3-timeline"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
           >
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className={`circle circle-${i}`}></div>
-            ))}
+            <div className="timeline-row">
+              {[...Array(2)].flatMap((_, repeatIndex) =>
+                [
+                  { label: "UNDERSTAND THE PATIENT", size: 260 },
+                  { label: "INITIAL ASSESSMENT", size: 260 },
+                  { label: "EVALUATION", size: 260 },
+                  { label: "ASSESSMENT CONTINUED", size: 260 },
+                  { label: "DIAGNOSTIC", size: 260 },
+                  { label: "RE-DO INITIAL ASSESSMENT", size: 260 },
+                ].map((circle, i) => (
+                  <React.Fragment key={`${repeatIndex}-${i}`}>
+                    <div
+                      className="timeline-circle"
+                      style={{ width: circle.size, height: circle.size }}
+                    >
+                      <span>{circle.label}</span>
+                    </div>
+                    <div className="timeline-arrow mx-3">→</div>
+                  </React.Fragment>
+                ))
+              )}
+            </div>
           </motion.div>
         </>
       )}
 
       {/* Layer 4 Content */}
       {cursorActive && activeLayer === 4 && (
+  <>
+    <motion.div
+      className="bottom-left-text"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      {"Amaterasu moves beyond the linear leverage non linear dynamics to capture fully connected consious mind, toward holistic dynamic, and interconnected"
+        .split(" ")
+        .map((word, i) => (
+          <motion.span
+            key={i}
+            className="word"
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.6, delay: i * 0.05 }}
+          >
+            {word}&nbsp;
+          </motion.span>
+        ))}
+    </motion.div>
+
+    <div className="layer4-flower">
+      {[
+        { x: 0, y: 0, text: "HUMAN" }, // center
+        { x: -130, y: -130 }, // top-left
+              { x: 130, y: -130 }, // top-right
+              { x: -130, y: 130 }, // bottom-left
+              { x: 130, y: 130 }, // bottom-right
+              { x: 0, y: -220 }, // top
+              { x: 0, y: 220 }, // bottom
+              { x: -230, y: 0 }, // left
+              { x: 230, y: 0 }, // right
+      ].map((pos, i) => (
         <motion.div
-          className="bottom-left-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          key={i}
+          className="flower-circle"
+          initial={{ x: 0, y: 0, opacity: 0 }}
+          animate={{ x: pos.x, y: pos.y, opacity: 1 }}
+          transition={{
+            delay: i * 0.08,
+            duration: 2,
+            ease: [0.25, 1.1, 0.5, 1],
+          }}
         >
-          {"Amaterasu moves beyond the linear leverage non linear dynamics to capture fully connected consious mind, toward holistic dynamic, and interconnected"
-            .split(" ")
-            .map((word, i) => (
-              <motion.span
-                key={i}
-                className="word"
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.6, delay: i * 0.05 }}
-              >
-                {word}&nbsp;
-              </motion.span>
-            ))}
+          {pos.text && <span className="center-text">{pos.text}</span>}
         </motion.div>
-      )}
-      {/* Layer 3: Appears full screen after horizontal scroll
-      <div className="layers-scroll-container">
-        <motion.div className="layers-track" style={{ x: smoothX, opacity }}>
-          {/* Layer 3: Full screen content (custom layout) */}
-      {/* <div className="layer full-layout">
-            <div className="layer3-content">
-              <h2>Quantum Simulation</h2>
-              <p>
-                Mental states running on nature’s logic. Beyond computation —
-                this is entangled consciousness.
-              </p>
-            </div>
-          </div> */}
-      {/* </motion.div> */}
-      {/* // </div> */}
+      ))}
+    </div>
+  </>
+)}
+
     </section>
   );
 }
