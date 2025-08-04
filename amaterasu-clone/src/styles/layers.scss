@@ -1,10 +1,23 @@
-.layers-section {
+// .layers-section {
+//   position: relative;
+//   background: #ffffff;
+//   overflow: visible;
+//   min-height: 400vh;
+//   // padding-top: 60vw; // Leave room above for fixed semicircle
+//   z-index: 1;
+// }
+.layers-outer {
   position: relative;
-  background: #ffffff;
-  overflow: visible;
-  min-height: 400vh;
-  // padding-top: 60vw; // Leave room above for fixed semicircle
+  height: 400vh; // Scroll length
   z-index: 1;
+}
+
+.layers-section {
+  position: relative; // NOT sticky
+  height: 400vh;
+  overflow: visible;
+  background: white;
+  z-index: 2;
 }
 
 /* 🔵 The animated upper semicircle */
@@ -40,15 +53,24 @@
 
 
 /* Horizontal container */
+// .layers-scroll-container {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   height: 100vh;
+//   width: 100vw;
+//   overflow: hidden;
+//   z-index: 2;
+// }
+
 .layers-scroll-container {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative; // ⬅️ FIXED → RELATIVE
   height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  width: 300vw; // still supports horizontal layout
+  display: flex;
   z-index: 2;
 }
+
 
 .layers-track {
   display: flex;
@@ -198,6 +220,33 @@
   height: 0;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  overflow: visible;
+
+  .glow-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 1;
+
+    .glow-stroke {
+      stroke: rgba(255, 255, 255, 0.9);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 100; // Set this longer if the path is long
+      stroke-dashoffset: 100;
+      animation: drawGlow 2s linear infinite;
+      filter: drop-shadow(0 0 6px white);
+    }
+
+    @keyframes drawGlow {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+
 
   .flower-circle {
     position: absolute;
@@ -216,5 +265,10 @@
       pointer-events: none;
     }
   }
+
 }
 
+.technologies-spacer {
+  height: 100vh !important;
+  background: rgb(0, 0, 0);
+}

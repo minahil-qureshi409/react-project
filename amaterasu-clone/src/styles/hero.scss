@@ -1,8 +1,10 @@
 .hero-outer-wrapper {
-  height: 135vh;
+  min-height: 100vh;
   position: relative;
   overflow: visible;
 }
+
+
 
 .hero-scroll-wrapper {
   // position: sticky;

@@ -17,7 +17,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000; // fallback only
-  overflow-x: hidden;
+  // overflow-x: hidden;
   font-family: "Poppins", sans-serif;
   color: white;
 }
@@ -34,30 +34,30 @@ body {
 // }
 
 
-.container {
-  color: white;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 20px;
-}
+// .container {
+//   color: white;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   padding: 80px 20px;
+// }
 
-.section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+// .section {
+//   min-height: 100vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-direction: column;
+// }
 
-.hero-title {
-  color: white;
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
+// .hero-title {
+//   color: white;
+//   font-size: 3rem;
+//   text-align: center;
+//   margin-bottom: 20px;
+// }
 
-.hero-subtitle {
-  font-size: 1.5rem;
-  text-align: center;
-  opacity: 0.7;
-}
+// .hero-subtitle {
+//   font-size: 1.5rem;
+//   text-align: center;
+//   opacity: 0.7;
+// }
