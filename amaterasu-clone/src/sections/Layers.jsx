@@ -67,8 +67,8 @@ export default function Layers() {
   }, [scale]);
 
   return (
-    <section className="layers-outer">
-      <div className="layers-section"  ref={ref}>
+    <section className="layers-outer" ref={ref}>
+      <div className="layers-section"  >
         {/* Semicircle */}
         <motion.div className="layer-semicircle" style={{ scale }} />
 
@@ -239,7 +239,7 @@ export default function Layers() {
         )}
 
       </div>
-        <div className="technologies-spacer" />
+        {/* <div className="technologies-spacer" /> */}
     </section>
   );
 }

@@ -1,24 +1,31 @@
 .technologies-section {
-    position: relative;
-    background: #fdfdfd;
+    position: relative !important;
+    background: linear-gradient(to bottom, #d4ecf9, #e0f2ff);
     z-index: 2;
-    padding: 8rem 2rem;
-    min-height: 100vh;
-
-
+    padding: 8rem 5% 6rem !important;
+    // color: #001a33 !important;
+    min-height: 250vh;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    scroll-behavior: smooth;
+    // border: 5px solid red;
 
     .inner-container {
-        max-width: 900px;
+        // max-width: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         margin: 0 auto;
     }
 
     .tech-heading {
-        font-size: 3.2rem;
-        font-weight: 500;
+        font-size: 4.5rem;
+        font-weight: 300;
         margin: 0;
         line-height: 1.1;
         text-align: left;
-        color: #001d42;
+        color: #070f80 !important;
     }
 
     .tech-label {
@@ -46,4 +53,71 @@
         max-width: 700px;
         color: #333f55;
     }
+
+    .floating-triangle {
+        pointer-events: none;
+        z-index: 10;
+
+        .triangle-button {
+            background: transparent !important;
+            border: none;
+            cursor: pointer;
+
+            .technology-svg {
+                width: 150px;
+                height: auto;
+                color: #00bfff;
+            }
+        }
+    }
+
+
+
+    // .triangle-button .inner {
+    //     position: relative;
+    //     width: 150px;
+    //     height: 150px;
+    //     color: #32e2ec;
+    //     text-align: center;
+    //     font-weight: 500;
+    //     font-size: 1rem;
+    // }
+
+    // .triangle-button .label {
+    //     position: absolute;
+    //     top: 30%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     line-height: 1.2;
+    // }
+
+    // .triangle-button .label .super {
+    //     font-size: 0.7rem;
+    //     vertical-align: super;
+    //     margin-left: 3px;
+    // }
+
+    // .triangle-button .plus {
+    //     position: absolute;
+    //     bottom: 10px;
+    //     right: 15px;
+    //     font-size: 1.5rem;
+    // }
+
+    // .triangle-button .technology-svg {
+    //     width: 100%;
+    //     height: 100%;
+    //     color: #32e2ec;
+    //     filter: drop-shadow(0 0 10px #32e2ecaa);
+    // }
+
+    // .triangle-button .hover {
+    //     position: absolute;
+    //     inset: 0;
+    //     background: rgba(50, 226, 236, 0.1);
+    //     transition: background 0.3s ease;
+    //     border-radius: 10px;
+    // }
+
+
 }

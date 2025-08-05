@@ -14,7 +14,7 @@ const Main = () => {
       <Vision ref={visionRef} />  {/*⬅️ Pass ref to Vision */}
       <Layers visionRef={visionRef} /> {/*⬅️ Pass ref to Layers */}
       {/* <About  /> ⬅️ Pass ref to Layers */}
-       <Technologies /> {/* ⬅️ Pass ref to Layers */}
+       <Technologies/> {/* ⬅️ Pass ref to Layers */}
       
     </div>
   );

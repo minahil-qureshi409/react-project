@@ -8,17 +8,20 @@
 // }
 .layers-outer {
   position: relative;
-  height: 400vh; // Scroll length
+  min-height: 100vh; // Scroll length
   z-index: 1;
 }
 
 .layers-section {
-  position: relative; // NOT sticky
-  height: 400vh;
+  position: relative !important;
+  height: 500vh; // ✅ increase height to allow scroll
   overflow: visible;
   background: white;
   z-index: 2;
+   padding-bottom: 100vh;
 }
+
+
 
 /* 🔵 The animated upper semicircle */
 .layer-semicircle {
