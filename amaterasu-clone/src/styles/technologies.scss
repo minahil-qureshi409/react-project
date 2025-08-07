@@ -64,72 +64,167 @@
         max-width: 600px;
     }
 
+    .main-content-wrapper {
+        transition: transform 0.5s ease;
 
-    .floating-triangle {
-        pointer-events: none;
-        z-index: 20;
-        filter: none;
+        //  position: relative; 
+        &.shifted {
+            margin-right: 35rem !important; // shift left when panel is open
+        }
 
-        .triangle-button {
-            background: transparent;
-            border: none;
-            cursor: default;
-            position: relative;
+        // ✅ New wrapper to keep them aligned
+        // .triangle-wrapper {
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: flex-start;
+        //     gap: 1rem;
+        //     margin-top: 24rem; // adjust as needed
+        //     margin-left: 4.7rem;
+        //     // position: relative;
+        //     z-index: 20;
 
-            .technology-svg {
-                width: 150px;
-                height: auto;
-                transition: all 0.3s ease;
 
-                path {
-                    fill: url(#triangle-gradient);
-                    stroke: none;
+        .floating-triangle {
+            // position: relative;
+            pointer-events: none;
+            z-index: 20;
+            filter: none;
+
+
+            .triangle-button {
+                background: transparent;
+                border: none;
+                cursor: default;
+                position: relative;
+
+                .technology-svg {
+                    width: 150px;
+                    height: auto;
                     transition: all 0.3s ease;
+
+                    path {
+                        fill: url(#triangle-gradient);
+                        stroke: none;
+                        transition: all 0.3s ease;
+                    }
+                }
+
+                .triangle-text {
+                    position: absolute;
+                    top: 39%;
+                    left: 35%;
+                    transform: translate(-50%, -50%) rotate(120deg);
+                    color: #002437;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 5px;
+                    letter-spacing: 0.05em;
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: opacity 0.3s ease, color 0.3s ease;
+                }
+
+                .plus-icon {
+                    position: absolute;
+                    top: 75%;
+                    left: 15%;
+                    transform: translateX(-50%)rotate(120deg);
+                    font-size: 15px;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 0.3s ease;
                 }
             }
 
-            .triangle-text {
-                position: absolute;
-                top: 39%;
-                left: 35%;
-                transform: translate(-50%, -50%) rotate(120deg);
-                color: #002437;
-                text-align: center;
-                font-weight: bold;
-                font-size: 5px;
-                letter-spacing: 0.05em;
-                pointer-events: none;
-                opacity: 0;
-                transition: opacity 0.3s ease, color 0.3s ease;
-            }
+            &.show-content {
+                pointer-events: auto;
 
-            .plus-icon {
-                position: absolute;
-                top: 75%;
-                left: 15%;
-                transform: translateX(-50%)rotate(120deg);
-                font-size: 15px;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
+                .triangle-button {
+                    cursor: pointer;
+
+                    .technology-svg path {
+                        fill: transparent;
+                        stroke: #768e9b;
+                        stroke-width: 1;
+                    }
+
+                    .triangle-text,
+                    .plus-icon {
+                        opacity: 1;
+                    }
+
+                    &:hover {
+                        .technology-svg path {
+                            fill: url(#triangle-gradient);
+                        }
+
+                        .triangle-text,
+                        .plus-icon {
+                            color: white;
+                        }
+                    }
+                }
             }
         }
 
-        &.show-content {
-            pointer-events: auto;
+
+        .static-triangles {
+            display: flex;
+            justify-content: center;
+            gap: -10px !important;
+            margin-top: 24rem !important;
+            margin-left: 4.7rem !important;
+            opacity: 0;
+            // transform: translateY(20px);
+            transition: opacity 0.3s ease;
+
+            &.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
             .triangle-button {
-                cursor: pointer;
+                width: 21.5rem;
+
+                // position: relative;
+                .triangle-text {
+                    position: absolute;
+                    // top: 92%;
+                    // left: 36%;
+                    transform: translate(24%, -130%);
+                    color: #002437;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 12px;
+                    letter-spacing: 0.05em;
+                    pointer-events: none;
+                    opacity: 1;
+                    transition: opacity 0.3s ease, color 0.3s ease;
+                }
+
+                .plus-icon {
+                    position: absolute;
+                    font-size: 30px;
+                    color: black;
+                    pointer-events: none;
+                    transition: opacity 0.3s ease;
+                }
+
+                // First triangle's plus icon
+                &:nth-child(1) .plus-icon {
+                    top: 78%;
+                    left: 34%;
+                }
+
+                // Second triangle's plus icon
+                &:nth-child(2) .plus-icon {
+                    top: 78%;
+                    left: 84%;
+                }
 
                 .technology-svg path {
                     fill: transparent;
-                    stroke: #002437;
-                    stroke-width: 1;
-                }
-
-                .triangle-text,
-                .plus-icon {
-                    opacity: 1;
+                    stroke: #8a969c;
                 }
 
                 &:hover {
@@ -144,62 +239,52 @@
                 }
             }
         }
+
     }
 
 
-    .static-triangles {
-        display: flex;
-        justify-content: center;
-        gap: -10px !important;
-        margin-top: 24rem !important;
-        margin-left: 4.7rem !important;
+    .side-panel {
+        position: fixed;
+        top: 0;
+        right: -30vw; // hidden off-screen
+        width: 30vw;
+        height: 100vh;
+        background: white;
+        padding: 4rem 3rem;
+        z-index: 100;
+        transition: right 0.5s ease;
 
-        .triangle-button {
-            width: 21.5rem;
+        &.open {
+            right: 0;
+        }
 
-            .triangle-text {
-                position: absolute;
-                // top: 92%;
-                // left: 36%;
-                transform: translate(20%, -120%);
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: -3rem;
+            background: none;
+            border: none;
+            color: #002437;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .panel-content {
+            margin-top: 4rem;
+
+            h2 {
+                font-size: 2rem;
                 color: #002437;
-                text-align: center;
-                font-weight: bold;
-                font-size: 13px;
-                letter-spacing: 0.05em;
-                pointer-events: none;
-                opacity: 1;
-                transition: opacity 0.3s ease, color 0.3s ease;
             }
 
-            .plus-icon {
-                position: absolute;
-                top: 74%;
-                left: 68.5%;
-                transform: translateX(-50%);
-                font-size: 35px;
-                color: black;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
-            }
-
-            .technology-svg path {
-                fill: transparent;
-                stroke: #002437;
-            }
-
-            &:hover {
-                .technology-svg path {
-                    fill: url(#triangle-gradient);
-                }
-
-                .triangle-text,
-                .plus-icon {
-                    color: white;
-                }
+            p {
+                margin-top: 1rem;
+                font-size: 1rem;
+                color: #333;
             }
         }
     }
+
 
 
 }

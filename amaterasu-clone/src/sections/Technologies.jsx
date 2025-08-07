@@ -31,6 +31,7 @@ const textVariant = {
 export default function Technologies() {
   const containerRef = useRef(null);
   const [isTextVisible, setIsTextVisible] = useState(false);
+  const [activePanel, setActivePanel] = useState(null); // e.g., "quantum", "entropy", "clinical"
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -94,129 +95,180 @@ export default function Technologies() {
           </p>
         </div>
 
-        {/* Animated Triangle */}
-        <motion.div
-          className={`floating-triangle ${isTextVisible ? "show-content" : ""}`}
-          style={{
-            x,
-            y,
-            rotate,
-            scale,
-            filter: blur,
-            opacity,
-            position: "absolute",
-            top: "5%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <button className="triangle-button">
-            <div className="inner">
-              <svg
-                viewBox="0 0 350 251"
-                xmlns="http://www.w3.org/2000/svg"
-                className="technology-svg"
-              >
-                <defs>
-                  <linearGradient
-                    id="triangle-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
+        <div className={`main-content-wrapper ${activePanel ? "shifted" : ""}`}>
+          <div class="triangle-wrapper">
+            {/* Animated Triangle */}
+            <motion.div
+              className={`floating-triangle ${
+                isTextVisible ? "show-content" : ""
+              }`}
+              onClick={() => setActivePanel("quantum")}
+              style={{
+                x,
+                y,
+                rotate,
+                scale,
+                filter: blur,
+                opacity,
+                position: "absolute",
+                top: "5%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <button className="triangle-button">
+                <div className="inner">
+                  <svg
+                    viewBox="0 0 350 251"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="technology-svg"
                   >
-                    <stop offset="0%" stopColor="#024ab0" />
-                    <stop offset="100%" stopColor="#002437" />
-                  </linearGradient>
-                </defs>
-                <path
-                  fill="url(#triangle-gradient)"
-                  d="M150.995 4.24999L286.528 239C289.415 244 285.806 250.25 280.033 250.25H8.96703C3.19353 250.25 -0.414931 244 2.47182 239L138.005 4.25001C140.892 -0.749992 148.108 -0.750008 150.995 4.24999Z"
-                />
-              </svg>
-            </div>
+                    <defs>
+                      <linearGradient
+                        id="triangle-gradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" stopColor="#024ab0" />
+                        <stop offset="100%" stopColor="#002437" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      fill="url(#triangle-gradient)"
+                      d="M150.995 4.24999L286.528 239C289.415 244 285.806 250.25 280.033 250.25H8.96703C3.19353 250.25 -0.414931 244 2.47182 239L138.005 4.25001C140.892 -0.749992 148.108 -0.750008 150.995 4.24999Z"
+                    />
+                  </svg>
+                </div>
 
-            {/* ✅ Always rendered, shown only when .show-content is active */}
-            <div className="triangle-text">
-              <p>
-                OUR MIND,
-                <br />A QUANTUM WORLD
-              </p>
+                {/* ✅ Always rendered, shown only when .show-content is active */}
+                <div className="triangle-text">
+                  <p>
+                    OUR MIND,
+                    <br />A QUANTUM WORLD
+                  </p>
+                </div>
+                <span className="plus-icon">+</span>
+              </button>
+            </motion.div>
+
+            <div
+              className={`static-triangles ${isTextVisible ? "visible" : ""}`}
+            >
+              <div
+                className="triangle-button static"
+                onClick={() => setActivePanel("entropy")}
+              >
+                <div className="inner">
+                  <svg
+                    viewBox="0 0 340 251"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="technology-svg"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="triangle-gradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" stopColor="#024ab0" />
+                        <stop offset="100%" stopColor="#002437" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      fill="url(#triangle-gradient)"
+                      d="M150.995 4.24999L286.528 239C289.415 244 285.806 250.25 280.033 250.25H8.96703C3.19353 250.25 -0.414931 244 2.47182 239L138.005 4.25001C140.892 -0.749992 148.108 -0.750008 150.995 4.24999Z"
+                    />
+                  </svg>
+                </div>
+                <div className="triangle-text ">
+                  <p>
+                    BEAUTY IN
+                    <br />
+                    NATURE'S ENTROPY
+                  </p>
+                </div>
+                <span className="plus-icon">+</span>
+              </div>
+
+              <div
+                className="triangle-button static"
+                onClick={() => setActivePanel("clinical")}
+              >
+                <div className="inner">
+                  <svg
+                    viewBox="0 0 340 251"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="technology-svg"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="triangle-gradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" stopColor="#024ab0" />
+                        <stop offset="100%" stopColor="#002437" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      fill="url(#triangle-gradient)"
+                      d="M150.995 4.24999L286.528 239C289.415 244 285.806 250.25 280.033 250.25H8.96703C3.19353 250.25 -0.414931 244 2.47182 239L138.005 4.25001C140.892 -0.749992 148.108 -0.750008 150.995 4.24999Z"
+                    />
+                  </svg>
+                </div>
+                <div className="triangle-text mx-3 ">
+                  <p>
+                    APPLIED CLINICAL
+                    <br />
+                    BEST PRACTICES
+                  </p>
+                </div>
+                <span className="plus-icon">+</span>
+              </div>
             </div>
-            <span className="plus-icon">+</span>
+          </div>
+        </div>
+
+        <div className={`side-panel ${activePanel ? "open" : ""}`}>
+          <button className="close-btn" onClick={() => setActivePanel(null)}>
+            Close →
           </button>
-        </motion.div>
 
-        <div className="static-triangles">
-          <div className="triangle-button static">
-            <div className="inner">
-              <svg
-                viewBox="0 0 340 251"
-                xmlns="http://www.w3.org/2000/svg"
-                className="technology-svg"
-              >
-                <defs>
-                  <linearGradient
-                    id="triangle-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#024ab0" />
-                    <stop offset="100%" stopColor="#002437" />
-                  </linearGradient>
-                </defs>
-                <path
-                  fill="url(#triangle-gradient)"
-                  d="M150.995 4.24999L286.528 239C289.415 244 285.806 250.25 280.033 250.25H8.96703C3.19353 250.25 -0.414931 244 2.47182 239L138.005 4.25001C140.892 -0.749992 148.108 -0.750008 150.995 4.24999Z"
-                />
-              </svg>
-            </div>
-            <div className="triangle-text ">
+          {activePanel === "quantum" && (
+            <div className="panel-content">
+              <h2>The quantum nature of thought</h2>
               <p>
-                BEAUTY IN
-                <br />
-                NATURE'S ENTROPY
+                We are making long term investments in quantum computing
+                research...
               </p>
             </div>
-              <span className="plus-icon">+</span>
-          </div>
+          )}
 
-          <div className="triangle-button static">
-            <div className="inner">
-              <svg
-                viewBox="0 0 340 251"
-                xmlns="http://www.w3.org/2000/svg"
-                className="technology-svg"
-              >
-                <defs>
-                  <linearGradient
-                    id="triangle-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#024ab0" />
-                    <stop offset="100%" stopColor="#002437" />
-                  </linearGradient>
-                </defs>
-                <path
-                  fill="url(#triangle-gradient)"
-                  d="M150.995 4.24999L286.528 239C289.415 244 285.806 250.25 280.033 250.25H8.96703C3.19353 250.25 -0.414931 244 2.47182 239L138.005 4.25001C140.892 -0.749992 148.108 -0.750008 150.995 4.24999Z"
-                />
-              </svg>
-            </div>
-            <div className="triangle-text mx-3 ">
+          {activePanel === "entropy" && (
+            <div className="panel-content">
+              <h2>Beauty in Nature's Entropy</h2>
               <p>
-                APPLIED CLINICAL
-                <br />
-                BEST PRACTICES
+                Nature thrives in complexity, and our approach embraces that
+                chaos...
               </p>
             </div>
-              <span className="plus-icon">+</span>
-          </div>
+          )}
+
+          {activePanel === "clinical" && (
+            <div className="panel-content">
+              <h2>Applied Clinical Best Practices</h2>
+              <p>
+                We leverage advanced behavioral modeling to enhance real-world
+                interventions...
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>
