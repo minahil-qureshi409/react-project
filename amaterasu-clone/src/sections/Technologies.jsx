@@ -270,10 +270,17 @@ export default function Technologies() {
             <div className="panel-content">
               <h2>The quantum nature of thought</h2>
               <span className="">
-                 <span className="sidepanel-dot"></span> OUR MIND, A QUANTUM WORLD
-            </span>
+                <span className="sidepanel-dot"></span> OUR MIND, A QUANTUM
+                WORLD
+              </span>
               <p>
-                We are making long term investments in quantum computing research and hardware to form the pinnacle of our focus. We believe that while the brain itself may not be quantum in nature, it's often encoded behavioralisms exhibit patterns incredibly well suited for quantum encoded modeling, allowing us to play with behavioral complexities in orders of magnitude more complex than current formalisms.
+                We are making long term investments in quantum computing
+                research and hardware to form the pinnacle of our focus. We
+                believe that while the brain itself may not be quantum in
+                nature, it's often encoded behavioralisms exhibit patterns
+                incredibly well suited for quantum encoded modeling, allowing us
+                to play with behavioral complexities in orders of magnitude more
+                complex than current formalisms.
               </p>
             </div>
           )}
@@ -281,11 +288,18 @@ export default function Technologies() {
           {activePanel === "entropy" && (
             <div className="panel-content">
               <h2>Understanding nature's order</h2>
-             <span className="">
-                 <span className="sidepanel-dot"></span> BEAUTY IN NATURE'S ENTROPY
-            </span>
+              <span className="">
+                <span className="sidepanel-dot"></span> BEAUTY IN NATURE'S
+                ENTROPY
+              </span>
               <p>
-                We explore how small changes in mental processes can lead to significant shifts in behavior. Our work is focused on uncovering emergent patterns in decision-making, emotional regulation, and social interactions. By pushing the limits of understanding in these areas, we aim to develop transformative technologies that enhance both individual and collective human potential.
+                We explore how small changes in mental processes can lead to
+                significant shifts in behavior. Our work is focused on
+                uncovering emergent patterns in decision-making, emotional
+                regulation, and social interactions. By pushing the limits of
+                understanding in these areas, we aim to develop transformative
+                technologies that enhance both individual and collective human
+                potential.
               </p>
             </div>
           )}
@@ -293,11 +307,17 @@ export default function Technologies() {
           {activePanel === "clinical" && (
             <div className="panel-content">
               <h2>Human wisdom, personalized</h2>
-             <span className="">
-                 <span className="sidepanel-dot"></span> APPLIED CLINICAL BEST PRACTICES
-            </span>
+              <span className="">
+                <span className="sidepanel-dot"></span> APPLIED CLINICAL BEST
+                PRACTICES
+              </span>
               <p>
-                We intricately complement our approach to the use of frontier technologies with deep insights driven by the world's best practicing psychologists, psychiatrists, and neuroscientists, ensuring our research is grounded in safe, empirically, and applied ethical best practice, towards a true nurturing human experience.
+                We intricately complement our approach to the use of frontier
+                technologies with deep insights driven by the world's best
+                practicing psychologists, psychiatrists, and neuroscientists,
+                ensuring our research is grounded in safe, empirically, and
+                applied ethical best practice, towards a true nurturing human
+                experience.
               </p>
             </div>
           )}

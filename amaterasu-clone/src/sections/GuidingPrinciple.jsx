@@ -24,34 +24,34 @@ const textVariant = {
 
 const principles = [
   {
-    number: "01",
+    // dot: "01",
     title: "Transparency",
     description:
       "We believe in open communication and clarity in everything we do.",
   },
   {
-    number: "02",
+    // number: "02",
     title: "Innovation",
     description: "We embrace creativity and challenge the status quo.",
   },
   {
-    number: "03",
+    // number: "03",
     title: "Collaboration",
     description: "We work together to achieve extraordinary results.",
   },
   {
-    number: "04",
+    // number: "04",
     title: "Integrity",
     description:
       "We uphold honesty and strong moral principles in every action.",
   },
   {
-    number: "05",
+    // number: "05",
     title: "Empathy",
     description: "We listen and understand before acting.",
   },
   {
-    number: "06",
+    // number: "06",
     title: "Excellence",
     description: "We strive for the highest quality in all our work.",
   },
@@ -102,11 +102,14 @@ export default function GuidingPrinciple() {
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
               >
-                <span className="principle-number">{item.number}</span>
                 <div className="principle-text">
-                  <h3>{item.title}</h3>
+                  <span >
+                    <span className="principle-dot"></span>
+                    <h3>{item.title}</h3>
+                  </span>
+
                   <p>{item.description}</p>
                 </div>
               </motion.div>
