@@ -57,11 +57,37 @@ export default function Technologies() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 3.5]);
   const blur = useTransform(scrollYProgress, [0, 1], ["0px", "50px"]);
   const opacity = useTransform(scrollYProgress, [0, 1], [0.03, 2]);
+  const panelOffset = useMotionValue(0);
+
   // const showText = useTransform(scrollYProgress, (v) => v > 0.9); // Adjust as needed
   // Listen to scrollYProgress and update state
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setIsTextVisible(v > 0.55); // Adjust this threshold if needed
   });
+
+  useEffect(() => {
+    if (activePanel) {
+      panelOffset.set(-280); // adjust to match the static triangles' shift
+    } else {
+      panelOffset.set(0);
+    }
+  }, [activePanel, panelOffset]);
+
+  const adjustedX = useTransform(
+    [x, panelOffset],
+    ([scrollX, offset]) => scrollX + offset
+  );
+
+  useEffect(() => {
+    if (activePanel) {
+      document.body.style.overflow = "hidden"; // stop page scroll
+    } else {
+      document.body.style.overflow = "auto"; // restore scroll
+    }
+    return () => {
+      document.body.style.overflow = "auto"; // cleanup
+    };
+  }, [activePanel]);
 
   return (
     <section className="technologies-section" ref={containerRef}>
@@ -104,7 +130,7 @@ export default function Technologies() {
               }`}
               onClick={() => setActivePanel("quantum")}
               style={{
-                x,
+                x: adjustedX,
                 y,
                 rotate,
                 scale,
@@ -243,33 +269,40 @@ export default function Technologies() {
           {activePanel === "quantum" && (
             <div className="panel-content">
               <h2>The quantum nature of thought</h2>
+              <span className="">
+                 <span className="sidepanel-dot"></span> OUR MIND, A QUANTUM WORLD
+            </span>
               <p>
-                We are making long term investments in quantum computing
-                research...
+                We are making long term investments in quantum computing research and hardware to form the pinnacle of our focus. We believe that while the brain itself may not be quantum in nature, it's often encoded behavioralisms exhibit patterns incredibly well suited for quantum encoded modeling, allowing us to play with behavioral complexities in orders of magnitude more complex than current formalisms.
               </p>
             </div>
           )}
 
           {activePanel === "entropy" && (
             <div className="panel-content">
-              <h2>Beauty in Nature's Entropy</h2>
+              <h2>Understanding nature's order</h2>
+             <span className="">
+                 <span className="sidepanel-dot"></span> BEAUTY IN NATURE'S ENTROPY
+            </span>
               <p>
-                Nature thrives in complexity, and our approach embraces that
-                chaos...
+                We explore how small changes in mental processes can lead to significant shifts in behavior. Our work is focused on uncovering emergent patterns in decision-making, emotional regulation, and social interactions. By pushing the limits of understanding in these areas, we aim to develop transformative technologies that enhance both individual and collective human potential.
               </p>
             </div>
           )}
 
           {activePanel === "clinical" && (
             <div className="panel-content">
-              <h2>Applied Clinical Best Practices</h2>
+              <h2>Human wisdom, personalized</h2>
+             <span className="">
+                 <span className="sidepanel-dot"></span> APPLIED CLINICAL BEST PRACTICES
+            </span>
               <p>
-                We leverage advanced behavioral modeling to enhance real-world
-                interventions...
+                We intricately complement our approach to the use of frontier technologies with deep insights driven by the world's best practicing psychologists, psychiatrists, and neuroscientists, ensuring our research is grounded in safe, empirically, and applied ethical best practice, towards a true nurturing human experience.
               </p>
             </div>
           )}
         </div>
+        {activePanel && <div className="tech-overlay"></div>}
       </div>
     </section>
   );
