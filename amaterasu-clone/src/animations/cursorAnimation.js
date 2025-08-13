@@ -1,4 +1,4 @@
-  let scrollProgress = 0; // 0 to 1 (percentage)
+let scrollProgress = 0; // 0 to 1 (percentage)
 
 export const setCursorScrollProgress = (progress) => {
   scrollProgress = progress;
@@ -17,9 +17,6 @@ export const animateCursor = () => {
     outerY = 0;
 
   let isHovering = false;
-  
-
-
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
@@ -33,10 +30,14 @@ export const animateCursor = () => {
     }
   });
 
-  if (button) {
-    button.addEventListener("mouseenter", () => (isHovering = true));
-    button.addEventListener("mouseleave", () => (isHovering = false));
-  }
+  const hoverElements = document.querySelectorAll(
+    ".start-journey-btn, .triangle-button"
+  );
+
+  hoverElements.forEach((el) => {
+    el.addEventListener("mouseenter", () => (isHovering = true));
+    el.addEventListener("mouseleave", () => (isHovering = false));
+  });
 
   const animate = () => {
     const isRingActive = document.body.classList.contains("cursor-ring-active");
@@ -48,20 +49,20 @@ export const animateCursor = () => {
     innerX += (mouseX - innerX) * 0.2;
     innerY += (mouseY - innerY) * 0.2;
 
-    // Cursor styles
     const scale = isHovering ? 2 : 1;
 
     outerCursor.style.transform = `translate(${outerX}px, ${outerY}px) translate(-50%, -50%) scale(${scale})`;
     innerCursor.style.transform = `translate(${innerX}px, ${innerY}px) translate(-50%, -50%)`;
 
-    // Layer Ring Mode
-    if (isRingActive) {
+    // 📌 Only keep ring mode when scrollProgress is inside the Layers section
+    if (isRingActive && scrollProgress > 0 && scrollProgress < 1) {
       outerCursor.classList.add("cursor-ring");
       innerCursor.textContent = layerNumber;
 
       const progressDeg = scrollProgress * 360;
       outerCursor.style.setProperty("--ring-rotation", `${progressDeg}deg`);
     } else {
+      // Back to normal cursor
       outerCursor.classList.remove("cursor-ring");
       innerCursor.textContent = "";
     }

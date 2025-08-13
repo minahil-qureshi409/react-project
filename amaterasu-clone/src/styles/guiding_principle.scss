@@ -1,10 +1,28 @@
 .guiding-principle {
     position: relative;
     padding: 120px 0;
-    background: radial-gradient(circle at center, #024ab0, #002437 70%) !important;
+      background: radial-gradient(circle at center, #024ab0, #002437 70%);
+    // background-size: 400% 400% !important;
+    background-repeat: no-repeat !important;
+    animation: radialShift 15s ease-in-out infinite !important;
     color: #fff;
-    overflow: hidden;
+    // overflow: hidden;
     min-height: 100vh;
+    z-index: 99;
+
+    @keyframes radialShift {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 
     .container {
         position: relative;
@@ -16,15 +34,15 @@
 
     /* Big "6" background element */
     .big-six {
-        font-size: 35rem;
-        font-weight: 900;
+        font-size: 45rem;
+        font-weight: lighter !important;
         position: absolute;
         left: 12%;
-        top: 35%;
+        top: 31%;
         transform: translateY(-50%);
         z-index: 99;
         color: #fff;
-        opacity: 1 !important;
+        opacity: 0.9 !important;
         line-height: 0.9;
         pointer-events: none;
         user-select: none;
@@ -54,7 +72,7 @@
         .principle-list {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 70px;
             margin: 8.5rem 6rem !important;
 
             .principle-item {
@@ -83,7 +101,9 @@
                     }
 
                     p {
-                        font-size: 1rem;
+                        margin-top: 13px !important;
+                        margin-right: 5rem !important;
+                        font-size: 0.9rem;
                         line-height: 1.6;
                         opacity: 0.85;
                     }
