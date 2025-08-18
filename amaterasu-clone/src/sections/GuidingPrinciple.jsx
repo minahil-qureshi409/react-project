@@ -1,8 +1,17 @@
-import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import "../styles/guiding_principle.scss";
 import "../styles/stories.scss";
 // import FixedBackground from "../components/FixedBackground";
+import {
+  startStoryLoader,
+  stopStoryLoader,
+} from "../animations/cursorAnimation";
 
 const textVariant = {
   hidden: {
@@ -66,40 +75,80 @@ const principles = [
 // Stories data
 const stories = [
   {
-    text: `“It's hard to find a therapist who understands my cultural background. I often feel like they don’t get the unique pressures I face, which makes it harder to open up.”`,
-    author: `Alex's struggle reflects the need for culturally competent care.`,
+    text: `“There is so much stigma around mental health that even when i reach out for help, I feel ashamed. The system doesn't support oppeness, which make it harder” Kevin's experience highlights the meotional tall of stigma in seeking mental health support.`,
+    author: `Kevin 30 -FINANCE ANALYST `,
   },
   {
-    text: `“There’s so much stigma around mental health that even when I reach out for help, I feel ashamed. The system doesn’t support openness, which makes it harder.”`,
-    author: `Kevin’s experience highlights the emotional toll of stigma in seeking mental health support.`,
+    text: `“I've been on a waitlist for month and everyday feels like a battle. Th esystem is so slow to respond that there is no help for people in immediate crisea.” Sarah's experience empasizes the urgency of addressing delays in mental health support`,
+    author: `SARAH, 29 -MARKETING PROFESSIONAL`,
   },
   {
-    text: `“Finding affordable mental health care feels impossible. It shouldn’t be a privilege to get help.”`,
-    author: `Maria’s story emphasizes the importance of accessibility.`,
+    text: `“Every therapist i see has a differnt idea of what's wrong with me, but none seem to get it right. It's exausting to be readdressed constantly without real progress.” John's frustration underscores the challenge of inconsitent diagnosis."`,
+    author: `JOHN,35 -SOFTWARE ENGINEER`,
+  },
+  {
+    text: `“I've had to switch therapist multiple times and every time i do it fees like strating from the square one" Emily's experence highlights theinstability and lack of continuity in mental health care.`,
+    author: `EMILY, 41 -EDUCATOR`,
+  },
+  {
+    text: `“It's hard to find the therapist who understands my cultural background. I often feel like they don't get the unique pressure i feel, which make i harder to open up." Alex's struggle reflect the need for culturally competent care`,
+    author: `ALEX,26 -GRADUATE STUDENT`,
+  },
+  {
+    text: `“The mental health system feels like it's cnstantly playing catch-up. By the time you get the help you need, it's already too late for so many people" Olivia's frustration speaks to the slow response in proviing timely care.`,
+    author: `OLIVIA,24 -UNIVERSITY STUDENT`,
   },
 ];
 
 export default function GuidingPrinciple() {
-  const sectionRef = useRef(null);
+  const principleRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: principleRef,
     offset: ["start start", "end end"], // track only this section
   });
 
   // Clamp the motion between 0 and 1
-  const clampedProgress = useTransform(scrollYProgress, (v) => Math.min(v, 0.9));
+  const clampedProgress = useTransform(scrollYProgress, (v) =>
+    Math.min(v, 0.9)
+  );
 
   const bigSixY = useTransform(clampedProgress, [0, 1], ["0%", "100%"]);
   const listY = useTransform(clampedProgress, [0, 1], ["0%", "-5%"]);
 
   // Stories state
+  const storiesRef = useRef(null);
   const [current, setCurrent] = useState(0);
-  const nextStory = () => setCurrent((prev) => (prev + 1) % stories.length);
-  const prevStory = () =>
-    setCurrent((prev) => (prev - 1 + stories.length) % stories.length);
+  const [leavingIndex, setLeavingIndex] = useState(null); // which card is sliding out
+
+  // Cycle to next story
+  const nextStory = () => {
+    setLeavingIndex(current); // trigger slide-left animation
+  };
+
+  // Start/stop loader when cursor enters/leaves
+  useEffect(() => {
+    const section = storiesRef.current;
+    if (!section) return;
+
+    const handleEnter = () => {
+      document.body.classList.add("stories-active");
+      startStoryLoader(nextStory); // when loader finishes, it calls nextStory()
+    };
+    const handleLeave = () => {
+      document.body.classList.remove("stories-active");
+      stopStoryLoader();
+    };
+
+    section.addEventListener("mouseenter", handleEnter);
+    section.addEventListener("mouseleave", handleLeave);
+    return () => {
+      section.removeEventListener("mouseenter", handleEnter);
+      section.removeEventListener("mouseleave", handleLeave);
+    };
+  }, []);
 
   return (
-    <section className="guiding-principle" ref={sectionRef}>
+    <section className="guiding-principle" ref={principleRef}>
       {/* <FixedBackground /> */}
       <div className="container">
         {/* Big Translucent 6 */}
@@ -172,7 +221,7 @@ export default function GuidingPrinciple() {
       </div>
 
       {/* Next Stories Section */}
-      <div className="stories-section">
+      <div className="stories-section" ref={storiesRef}>
         <div className="stories-header">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -180,7 +229,7 @@ export default function GuidingPrinciple() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Perspectives
+            Personal <br /> Perspectives
           </motion.h2>
           <motion.p
             className="stories-subtitle"
@@ -194,23 +243,77 @@ export default function GuidingPrinciple() {
           </motion.p>
         </div>
 
-        <div className="stories-content">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
-            transition={{ duration: 0.8 }}
-            className="story-text"
-          >
-            <p className="quote">{stories[current].text}</p>
-            <p className="author">{stories[current].author}</p>
-          </motion.div>
+        <div className="stories-stack">
+          {stories.map((story, index) => {
+            const isActive = index === current;
+            const isNext = index === (current + 1) % stories.length;
+            const isPrev =
+              index === (current - 1 + stories.length) % stories.length;
+            const isLeaving = index === leavingIndex;
 
-          <div className="stories-controls">
-            <button onClick={prevStory}>&uarr;</button>
-            <button onClick={nextStory}>&darr;</button>
-          </div>
+            // keep only active/next/prev + leaving
+            if (!isActive && !isNext && !isPrev && !isLeaving) return null;
+
+            // base positions
+            let animateTo;
+            if (isLeaving) {
+              animateTo = {
+                x: "-120%", // slide off left
+                opacity: 0,
+                filter: "blur(8px)",
+                zIndex: 4,
+              };
+            } else if (isActive) {
+              animateTo = {
+                x: 0,
+                y: 0,
+                opacity: 1,
+                scale: 1.2,
+                zIndex: 3,
+                filter: "blur(0px)",
+              };
+            } else if (isNext) {
+              animateTo = {
+                x: 590,
+                y: -49,
+                opacity: 0.6,
+                scale: 0.7,
+                zIndex: 2,
+                filter: "blur(4px)",
+              };
+            } else {
+              // prev
+              animateTo = {
+                x: 320,
+                y: -260,
+                opacity: 0.6,
+                scale: 0.5,
+                zIndex: 2,
+                filter: "blur(4px)",
+              };
+            }
+
+            return (
+              <motion.div
+                key={index}
+                className="story-card"
+                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                animate={animateTo}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                style={{ pointerEvents: isLeaving ? "none" : "auto" }}
+                onAnimationComplete={() => {
+                  // when the leaving card finishes its slide, switch current
+                  if (isLeaving) {
+                    setCurrent((prev) => (prev + 1) % stories.length);
+                    setLeavingIndex(null); // reset
+                  }
+                }}
+              >
+                <p className="quote">{story.text}</p>
+                <p className="author">{story.author}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

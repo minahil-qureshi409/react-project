@@ -1,8 +1,31 @@
 let scrollProgress = 0; // 0 to 1 (percentage)
+let storyProgress = 0; // loader for stories (0 → 1)
+let loaderInterval = null;
 
 export const setCursorScrollProgress = (progress) => {
   scrollProgress = progress;
 };
+
+// Start loader when hovering over stories
+export const startStoryLoader = (onComplete) => {
+  clearInterval(loaderInterval);
+  storyProgress = 0;
+
+  loaderInterval = setInterval(() => {
+    storyProgress += 0.01; // adjust speed
+    if (storyProgress >= 1) {
+      storyProgress = 0;
+      onComplete(); // trigger next story
+    }
+  }, 50);
+};
+
+// Stop loader when leaving
+export const stopStoryLoader = () => {
+  clearInterval(loaderInterval);
+  storyProgress = 0;
+};
+
 
 export const animateCursor = () => {
   const innerCursor = document.querySelector(".cursor-inner");
@@ -61,10 +84,18 @@ export const animateCursor = () => {
 
       const progressDeg = scrollProgress * 360;
       outerCursor.style.setProperty("--ring-rotation", `${progressDeg}deg`);
+    } 
+     // Show arrow always in stories
+  else if (document.body.classList.contains("stories-active")) {
+      innerCursor.textContent = "→";
+
+      // Rotate loader ring
+      const progressDeg = storyProgress * 360;
+      outerCursor.classList.add("cursor-ring");
+      outerCursor.style.setProperty("--ring-rotation", `${progressDeg}deg`);
     } else {
-      // Back to normal cursor
-      outerCursor.classList.remove("cursor-ring");
       innerCursor.textContent = "";
+      outerCursor.classList.remove("cursor-ring");
     }
 
     requestAnimationFrame(animate);
